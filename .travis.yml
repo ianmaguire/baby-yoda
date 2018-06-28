@@ -1,0 +1,8 @@
+dist: trusty
+sudo: required
+language: python2
+os: linux
+before_script:
+ - sudo pip2 install -r requirements.txt
+script:
+- pytest
