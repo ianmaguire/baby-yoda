@@ -1,8 +1,24 @@
-dist: trusty
-sudo: required
-language: python2
-os: linux
+# dist: trusty
+# sudo: required
+# os: linux
+language: bash
+services: docker
+env:
+  - VERSION=1.0
+  - VERSION=1.1
+  - VERSION=2.0
+
+install:
+  - git clone https://github.com/ianmaguire/docker-python-flask ~/docker-python-flask
+
 before_script:
- - sudo pip2 install -r requirements.txt
+  - env | sort
+  - cd "$VERSION"
+  - image="docker-python-flask:$VERSION"
+
 script:
-- pytest
+  - travis_retry docker build -t "$image" .
+  - ~/docker-python-flask/test.sh "$image"
+
+after_script:
+- docker images
