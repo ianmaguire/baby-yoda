@@ -9,16 +9,16 @@ env:
   - VERSION=2.0
 
 install:
-  - git clone https://github.com/ianmaguire/docker-python-flask ~/docker-python-flask
+  - git clone https://github.com/ianmaguire/triggered ~/triggered
 
 before_script:
   - env | sort
   - cd "$VERSION"
-  - image="docker-python-flask:$VERSION"
+  - image="triggered:$VERSION"
 
 script:
   - travis_retry docker build -t "$image" .
-  - ~/docker-python-flask/test.sh "$image"
+  - ~/triggered/test/run.sh "$image"
 
 after_script:
 - docker images
