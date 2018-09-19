@@ -1,2 +1,2 @@
-# This repo does nothing other than trigger CI/CD pipelines like drone and travis.
+# This repo does nothing other than trigger CI/CD.
 # For testing purposes only.
