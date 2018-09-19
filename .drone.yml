@@ -3,9 +3,10 @@ pipeline:
     image: ianmaguire/trigger-warning
     commands:
       - echo "Hello world!"
-  github_release:
-    image: ianmaguire/triggered
-    secrets: [im_token]
+
+  publish:
+    image: github.com/ianmaguire/triggered
+    secrets: [im_token,api_key]
     files: version
     when:
       event: push
