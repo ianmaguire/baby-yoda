@@ -1,0 +1,13 @@
+pipeline:
+  test:
+    image: ianmaguire/trigger-warning
+    commands:
+      - echo "Hello world!"
+  github_release:
+    image: ianmaguire/triggered
+    secrets: [im_token]
+    files: version
+    when:
+      event: push
+      branch: master
+      success: true
