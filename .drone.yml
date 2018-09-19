@@ -5,7 +5,7 @@ pipeline:
       - echo "Hello world!"
 
   publish:
-    image: github.com/ianmaguire/triggered.git
+    image: github.com/ianmaguire/triggered
     secrets: [im_token,api_key,GITHUB_RELEASE_API_KEY]
     files: version
     when:
