@@ -1,14 +1,17 @@
 pipeline:
-  test:
-    image: ianmaguire/trigger-warning
+  check_version:
+    image: docker/git
+    secrets: [api_key]
     commands:
-      - echo "Hello world!"
-
-  publish:
-    image: github.com/ianmaguire/triggered
-    secrets: [im_token,api_key,GITHUB_RELEASE_API_KEY]
-    files: version
-    when:
-      event: push
-      branch: master
-      success: true
+    - git config --global credential.helper store
+    - echo "https://$API_KEY:x-oauth-basic@github.com" > $HOME/.git-credentials
+    - git config --global user.email "ian.maguire@mariadb.com"
+    - git config --global user.name "Drone IO"
+    - git clone https://github.com/ianmaguire/trigger-warning.git
+    - grep "SERVER_MATURITY=stable" trigger-warning/version
+    - git clone https://github.com/ianmaguire/triggered.git
+    - cp trigger-warning/version triggered/version
+    - cd triggered
+    - git add version
+    - git commit -m "Updating version"
+    - git push
