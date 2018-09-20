@@ -1,6 +1,5 @@
 pipeline:
   check_version:
-    repo: hub.docker.com
     image: alpine/git
     secrets: [api_key]
     commands:
