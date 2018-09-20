@@ -1,6 +1,6 @@
 pipeline:
   check_version:
-    image: docker/git
+    image: apline/git
     secrets: [api_key]
     commands:
     - git config --global credential.helper store
