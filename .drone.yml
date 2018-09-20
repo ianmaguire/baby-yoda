@@ -4,15 +4,15 @@ pipeline:
     image: alpine/git
     secrets: [api_key]
     commands:
-    - git config --global credential.helper store
-    - echo "https://$API_KEY:x-oauth-basic@github.com" > $HOME/.git-credentials
-    - git config --global user.email "ian.maguire@mariadb.com"
-    - git config --global user.name "Drone IO"
-    - git clone https://github.com/ianmaguire/trigger-warning.git
-    - grep "SERVER_MATURITY=stable" trigger-warning/version
-    - git clone https://github.com/ianmaguire/triggered.git
-    - cp trigger-warning/version triggered/version
-    - cd triggered
-    - git add version
-    - git commit -m "Updating version"
-    - git push
+      - git config --global credential.helper store
+      - echo "https://$API_KEY:x-oauth-basic@github.com" > $HOME/.git-credentials
+      - git config --global user.email "ian.maguire@mariadb.com"
+      - git config --global user.name "Drone IO"
+      - git clone https://github.com/ianmaguire/trigger-warning.git
+      - grep "SERVER_MATURITY=stable" trigger-warning/version
+      - git clone https://github.com/ianmaguire/triggered.git
+      - cp trigger-warning/version triggered/version
+      - cd triggered
+      - git add version
+      - git commit -m "Updating version"
+      - git push
