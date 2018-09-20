@@ -1,6 +1,7 @@
 pipeline:
   check_version:
-    image: hub.docker.com:443/r/alpine/git
+    repo: hub.docker.com/r
+    image: alpine/git
     secrets: [api_key]
     commands:
     - git config --global credential.helper store
