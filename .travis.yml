@@ -9,16 +9,16 @@ env:
   - VERSION=2.0
 
 install:
-  - git clone https://github.com/ianmaguire/triggered ~/triggered
+  - git clone https://github.com/ianmaguire/the-force ~/the-force
 
 before_script:
   - env | sort
   - cd "$VERSION"
-  - image="triggered:$VERSION"
+  - image="the-force:$VERSION"
 
 script:
   - travis_retry docker build -t "$image" .
-  - ~/triggered/test/run.sh "$image"
+  - ~/the-force/test/run.sh "$image"
 
 after_script:
 - docker images
